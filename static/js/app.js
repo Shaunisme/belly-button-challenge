@@ -2,9 +2,11 @@
 
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
+document.getElementsByClassName("jumbotron")[0].style.background = "url('static/img/BBB.png') repeat-x center";
+
 // Fetch the JSON data
 d3.json(url).then(function(data) {
-console.log("data: ",data);
+  
   let element = d3.select("#selDataset");
   // Make dropdwon select option from names
   for (let i in data.names) {

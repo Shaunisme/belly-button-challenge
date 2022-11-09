@@ -7,7 +7,6 @@ function gaugePointer(angle){
     var radians = degrees * Math.PI / 180;
     var x = radius * Math.cos(radians);
     var y = radius * Math.sin(radians);
-    console.log("radians: ",radians,"math.cos: ",Math.cos(radians),"math.sin: ",Math.sin(radians));
 
 
     // Path: create triangle
@@ -17,8 +16,7 @@ function gaugePointer(angle){
         pathY = String(y),
         pathEnd = ' Z';
     var path = mainPath.concat(pathX,space,pathY,pathEnd);
-    console.log("x: ",x," y: ",y);
-	console.log("path: ",path);
+
 	return path;
 }
 
@@ -60,8 +58,8 @@ function gaugeChart(metadata){
         }],
     title: '<b>Bully Button Washing Frequency</b><br>Scrubs Per Week',
         autosize:true,
-    height: 600,
-    width: 600,
+    height: 500,
+    width: 500,
     xaxis: {zeroline:false, showticklabels:false,
                 showgrid: false, range: [-1, 1]},
     yaxis: {zeroline:false, showticklabels:false,
