@@ -4,7 +4,7 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 
 // Fetch the JSON data
 d3.json(url).then(function(data) {
-
+console.log("data: ",data);
   let element = d3.select("#selDataset");
   // Make dropdwon select option from names
   for (let i in data.names) {
@@ -16,6 +16,7 @@ d3.json(url).then(function(data) {
   barChart(data.samples[0]);
   bubbleChart(data.samples[0]);
   metadataDisplay(data.metadata[0]);
+  gaugeChart(data.metadata[0]);
 });
 
 
@@ -35,6 +36,8 @@ function barChart(sample) {
       type:"bar"}];
 
     let layout = {
+      height: 500,
+      width: 500
       }; 
     config={responsive:true};
 
@@ -94,6 +97,7 @@ function optionChanged(value){
   barChart(sample);
   bubbleChart(sample);
   metadataDisplay(metadata);
+  gaugeChart(metadata);
   })
 
 }
