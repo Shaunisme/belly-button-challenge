@@ -3,17 +3,28 @@
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
 document.getElementsByClassName("jumbotron")[0].style.background = "url('static/img/BBB.png') repeat-x center";
+document.getElementsByClassName("jumbotron")[0].style.color = "white";
+document.getElementsByClassName("jumbotron")[0].style.textShadow = "4px 6px 5px #000000";
+document.getElementsByClassName("jumbotron")[0].style.fontWeight = "bold";
+document.getElementsByClassName("jumbotron")[0].style.fontVariant = "small-caps";
 
 // Fetch the JSON data
 d3.json(url).then(function(data) {
   
-  let element = d3.select("#selDataset");
+  let element = document.getElementById("selDataset");
   // Make dropdwon select option from names
-  for (let i in data.names) {
+/*   for (let i in data.names) {
     let option = element.append("option")
       .text(data.names[i])
       .attr("values", data.names[i]);
-  }  
+  }   */
+
+for (let i in data.names) {
+    var subjectList = document.createElement("option");
+    subjectList.text = parseInt(data.names[i]);
+    subjectList.value = data.names[i];
+    element.append(subjectList, element[null]);
+};
 
   barChart(data.samples[0]);
   bubbleChart(data.samples[0]);
@@ -55,7 +66,8 @@ function bubbleChart(sample){
     mode:"markers",
     marker: {
       size: sample.sample_values,
-      color: sample.otu_ids
+      color: sample.otu_ids,
+      colorscale: "Earth"
     },
     text:sample.otu_labels,
     type:"scatter"

@@ -1,34 +1,28 @@
 //Advanced Challenge Assignment (Optional)
 // Trig to calc meter point
-function gaugePointer(angle){
+function gaugePointer(washFreq){
 	
-    var degrees = 180 - angle;
-    var radius = .5;
+    // Plot needle
+    var freqCalc = washFreq / 9 * 180
+    var degrees = 180 - freqCalc, radius = 0.5; 
     var radians = degrees * Math.PI / 180;
-    var x = radius * Math.cos(radians);
-    var y = radius * Math.sin(radians);
+    var aX = (0.01 * Math.cos((degrees - 90) * Math.PI / 180)) + 0.51;
+    var aY = (0.01 * Math.sin((degrees - 90) * Math.PI / 180)) + 0.47;
+    var bX = (-0.01 * Math.cos((degrees - 90) * Math.PI / 180)) + 0.51;
+    var bY = (-0.01 * Math.sin((degrees - 90) * Math.PI / 180)) + 0.47;
+    var cX = ((radius * Math.cos(radians))*0.5) + 0.51;
+    var cY = ((radius * Math.sin(radians))*0.5) + 0.47 + 0.05;
 
-
-    // Path: create triangle
-    var mainPath = 'M -.0 -0.035 L .0 0.035 L ',
-        pathX = String(x),
-        space = ' ',
-        pathY = String(y),
-        pathEnd = ' Z';
-    var path = mainPath.concat(pathX,space,pathY,pathEnd);
+    var path = 'M ' + aX + ' ' + aY +
+    ' L ' + bX + ' ' + bY +
+    ' L ' + cX + ' ' + cY +
+    ' Z';
 
 	return path;
 }
 
 function gaugeChart(metadata){
-    var data = [{ type: 'scatter',
-        x: [0], y:[0],
-        marker: {size: 18, color:'darkred'},
-        showlegend: false,
-        name: 'Washing Frequency',
-        text: metadata.wfreq,
-        hoverinfo: 'text+name'},
-
+    var data = [
         { values: [81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81],
         rotation: 90,
         text:['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1'],
@@ -46,24 +40,23 @@ function gaugeChart(metadata){
         showlegend: false
     }];
 
-    var angle = metadata.wfreq * 180/9;
     var layout = {
-    shapes:[{
-        type: 'path',
-        path: gaugePointer(angle),
-        fillcolor: 'darkred',
-        line: {
-            color: 'darkred'
-        }
-        }],
-    title: '<b>Bully Button Washing Frequency</b><br>Scrubs Per Week',
+        shapes:[{
+            type: 'path',
+            path: gaugePointer(metadata.wfreq),
+            fillcolor: 'darkred',
+            line: {
+                color: 'darkred'
+            }
+            }],
+        title: '<b>Bully Button Washing Frequency</b><br>Scrubs Per Week',
         autosize:true,
-    height: 500,
-    width: 500,
-    xaxis: {zeroline:false, showticklabels:false,
-                showgrid: false, range: [-1, 1]},
-    yaxis: {zeroline:false, showticklabels:false,
-                showgrid: false, range: [-1, 1]}
+        height: 500,
+        width: 500,
+        xaxis: {zeroline:false, showticklabels:false,
+                    showgrid: false, range: [-1, 1]},
+        yaxis: {zeroline:false, showticklabels:false,
+                    showgrid: false, range: [-1, 1]}
     };
     config={responsive:true};
     // plot the gauge chart
