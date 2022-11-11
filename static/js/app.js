@@ -54,8 +54,9 @@ function barChart(value) {
   let layout = {
     title: {
       text:'<b>Microbial Species</b><br>Operational Taxonomic Units'},
-/*     height: 500,
-    width: 500, */
+    height: 500,
+    width: 500, 
+    margin: {"t": 80, "b": 80, "l": 80, "r": 10}
     }; 
   config={responsive:true};
 

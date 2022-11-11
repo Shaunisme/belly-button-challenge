@@ -1,11 +1,10 @@
 // Advanced Challenge Assignment (Optional)
 // Calc needle pointer
-function gaugePointer(wfreq){
+function gaugePointer(washFreq){
 	
     radians = (degrees) => degrees * Math.PI / 180;
-    var washFreq = parseInt(wfreq);
     var freqCalc = washFreq / 9 * 180;
-    var degrees = 180 - freqCalc, radius = 0.15; 
+    var radius = 0.15; 
 
     const width = 0.015;
     const coordianateOffset= 0.50;
