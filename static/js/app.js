@@ -78,6 +78,8 @@ function bubbleChart(value){
   }];
 
   layout = {
+    title: {
+      text:'<b>Bubble Chart of Microbial Species</b>'},
     xaxis: {
       title: {
         text: 'OTU ( Operational Taxonomic Units ) ID',
