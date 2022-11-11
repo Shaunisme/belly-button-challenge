@@ -1,6 +1,6 @@
 //1.Use the D3 library to read in samples.json from the URL https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json.
 
-const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
+onst url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 var dataSet;
 
 document.getElementsByClassName("jumbotron")[0].style.background = "url('static/img/BBB.gif') repeat-x center";
@@ -36,7 +36,7 @@ function barChart(value) {
 
   let sample = dataSet.samples.filter(subject => (subject.id === value));
 
-  let first10Otu = sample[0].otu_ids.slice(0,10).map((object)=>"OTU "+object).reverse();
+  let first10Otu = sample[0].otu_ids.slice(0,10).map((object)=>"OTU "+object+' ').reverse();
   let first10Labels = sample[0].otu_labels.slice(0,10).reverse();
   let first10Values= sample[0].sample_values.slice(0,10);
   first10Values.sort((a,b) => a-b);
@@ -54,9 +54,9 @@ function barChart(value) {
 
   let layout = {
     title: {
-      text:'<b>Microbial Species ( Operational Taxonomic Units )</b>'},
-    height: 500,
-    width: 500,
+      text:'<b>Microbial Species</b><br>Operational Taxonomic Units'},
+/*     height: 500,
+    width: 500, */
     }; 
   config={responsive:true};
 
@@ -83,10 +83,10 @@ function bubbleChart(value){
 
   layout = {
     title: {
-      text:'<b>Bubble Chart of Microbial Species</b>'},
+      text:'<b>Microbial Species</b><br>Colonised Human Belly Button'},
     xaxis: {
       title: {
-        text: 'OTU ( Operational Taxonomic Units ) ID',
+        text: 'OTU ID',
         font: {
           family: 'Courier New, monospace',
           size: 18
