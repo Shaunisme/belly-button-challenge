@@ -8,18 +8,17 @@ function gaugePointer(wfreq){
     var degrees = 180 - freqCalc, radius = 0.15; 
 
     const width = 0.01;
-    const yoffset = 0.52;
-    const xoffset= 0.50;
+    const coordianateOffset= 0.50;
 
     // Reference https://observablehq.com/@arronhunt/building-a-gauge-meter-with-plotly
     // x, y is the needle pointer
-    var x  = xoffset + Math.cos(radians(freqCalc)) * radius * -1, // -1 inverts the direction of the rotation
-        y  = yoffset + Math.sin(radians(freqCalc)) * radius;
+    var x  = coordianateOffset + (-1) * Math.cos(radians(freqCalc)) * radius, // -1 inverts the direction of the rotation
+        y  = coordianateOffset +        Math.sin(radians(freqCalc)) * radius;
     // x0, y0 and x1, y1 is the baseline of needle
-    var x0 = xoffset + Math.cos(radians(freqCalc - 90)) * width * -1,
-        y0 = yoffset + Math.sin(radians(freqCalc - 90)) * width,
-        x1 = xoffset+ Math.cos(radians(freqCalc - 90)) * width,
-        y1 = yoffset+ Math.sin(radians(freqCalc - 90)) * width * -1;
+    var x0 = coordianateOffset + (-1) * Math.cos(radians(freqCalc - 90)) * width,
+        y0 = coordianateOffset +        Math.sin(radians(freqCalc - 90)) * width;
+    var x1 = coordianateOffset +        Math.cos(radians(freqCalc - 90)) * width,
+        y1 = coordianateOffset + (-1) * Math.sin(radians(freqCalc - 90)) * width;
     console.log(x0,y0,x1,y1);
     // SVG draw a triangle: M move to point-1 x/y, L from x/y draw a line to point-2 x0/y0, L draw next line from x0,y0 to point-3 x1,y1, and Z will back to point-1 x,y
     var path = `
@@ -57,18 +56,24 @@ function gaugeChart(inputValue){
         shapes:[{
             type: 'path',
             path: gaugePointer(metadata[0].wfreq),
+
             fillcolor: 'darkred',
             line: {
-                color: 'darkred'
+                width: 0
             }
             }],
         title: '<b>Bully Button Washing Frequency</b><br>Scrubs Per Week',
-        autosize:true, 
-        xaxis: {visible:true,zeroline:true, showticklabels:false,
+        width: 500,
+        height: 500,
+        // autosize:true, 
+/*         xaxis: {visible:true,zeroline:true, showticklabels:false,
                     showgrid: true, range: [-1.1, 1.1]},
         yaxis: {visible:true,zeroline:true, showticklabels:false,
-                    showgrid: true, range: [-1.1, 1.1]}
-    };
+                    showgrid: true, range: [-1.1, 1.1]} */
+                    xaxis: {visible: true, zeroline:true, zerolinecolor: 'red', showticklabels: true, range: [-10.1, 10.1]},
+                    yaxis: {visible: true, zeroline:true, zerolinecolor: 'red', showticklabels: true, range: [-10.1, 10.1]},
+                    margin: {"t": 80, "b": 0, "l": 10, "r": 10}
+    }; 
     config={responsive:true};
     // plot the gauge chart
     graphDiv = document.getElementById('gauge');
