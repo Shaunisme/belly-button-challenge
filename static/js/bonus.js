@@ -7,7 +7,7 @@ function gaugePointer(wfreq){
     var freqCalc = washFreq / 9 * 180;
     var degrees = 180 - freqCalc, radius = 0.15; 
 
-    const width = 0.01;
+    const width = 0.015;
     const coordianateOffset= 0.50;
 
     // Reference https://observablehq.com/@arronhunt/building-a-gauge-meter-with-plotly
