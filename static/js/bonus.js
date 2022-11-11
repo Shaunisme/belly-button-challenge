@@ -21,7 +21,10 @@ function gaugePointer(washFreq){
 	return path;
 }
 
-function gaugeChart(metadata){
+function gaugeChart(inputValue){
+    var value = parseInt(inputValue);
+    let metadata = dataSet.metadata.filter(subject => (subject.id === value));
+
     var data = [
         { values: [81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81],
         rotation: 90,
@@ -43,7 +46,7 @@ function gaugeChart(metadata){
     var layout = {
         shapes:[{
             type: 'path',
-            path: gaugePointer(metadata.wfreq),
+            path: gaugePointer(metadata[0].wfreq),
             fillcolor: 'darkred',
             line: {
                 color: 'darkred'
