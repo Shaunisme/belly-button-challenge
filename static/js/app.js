@@ -46,6 +46,10 @@ function barChart(value) {
     y: first10Otu,
     text: first10Labels,
     orientation:'h',
+    marker: {
+      color: 'rgba(255,153,51,0.6)',
+      width: 1
+    },
     type:"bar"}];
 
   let layout = {
