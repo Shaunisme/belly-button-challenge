@@ -19,7 +19,7 @@ function gaugePointer(washFreq){
     var x1 = coordianateOffset +        Math.cos(radians(freqCalc - 90)) * width,
         y1 = coordianateOffset + (-1) * Math.sin(radians(freqCalc - 90)) * width;
     console.log(x0,y0,x1,y1);
-    // SVG draw a triangle: M move to point-1 x/y, L from x/y draw a line to point-2 x0/y0, L draw next line from x0,y0 to point-3 x1,y1, and Z will back to point-1 x,y
+    // SVG draw a triangle: M move to point-1 x/y, L from x/y draw a line to point-2 x0/y0, L draw next line from x0,y0 to point-3 x1,y1, and Z will back to point-1 x,y and sealed
     var path = `
     M ${x} ${y}
     L ${x0} ${y0}
@@ -64,14 +64,7 @@ function gaugeChart(inputValue){
         title: '<b>Bully Button Washing Frequency</b><br>Scrubs Per Week',
         width: 500,
         height: 500,
-        // autosize:true, 
-/*         xaxis: {visible:true,zeroline:true, showticklabels:false,
-                    showgrid: true, range: [-1.1, 1.1]},
-        yaxis: {visible:true,zeroline:true, showticklabels:false,
-                    showgrid: true, range: [-1.1, 1.1]} */
-                    xaxis: {visible: true, zeroline:true, zerolinecolor: 'red', showticklabels: true, range: [-10.1, 10.1]},
-                    yaxis: {visible: true, zeroline:true, zerolinecolor: 'red', showticklabels: true, range: [-10.1, 10.1]},
-                    margin: {"t": 80, "b": 0, "l": 10, "r": 10}
+        margin: {"t": 80, "b": 0, "l": 10, "r": 10}
     }; 
     config={responsive:true};
     // plot the gauge chart
